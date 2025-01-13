@@ -1,0 +1,2 @@
+<!DOCTYPE html>
+ERROR 404
