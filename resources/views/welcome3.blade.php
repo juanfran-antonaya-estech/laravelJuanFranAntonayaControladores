@@ -7,9 +7,7 @@
 </head>
 <body>
     <h1>Bienvenido
-        @isset($name)
-            Tu nombre es {{ $name }}
-        @endisset
+        Tu nombre es {{ $name }} y tu nick es {{ $nick }}
 
     </h1>
 </body>

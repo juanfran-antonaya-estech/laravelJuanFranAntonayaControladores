@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -8,10 +9,13 @@ Route::get('/', function () {
 
 // Esta ruta toma dos parametros y los pasa a welcome2, welcome2 esta hecho de manera que cuente tanto como saludo1 name y saludo1 name y nick
 
-Route::get('/saludo1/{name?}/{nick?}', function($name = '', $nick = '') {
-    return view('welcome2', compact('name', 'nick'));
-});
+//Route::get('/saludo1/{name?}/{nick?}', function($name = '', $nick = '') {
+//    return view('welcome2', compact('name', 'nick'));
+//});
+
 Route::get('/saludo1', fn() => view('welcome2'))->name('primerSaludo');
+Route::get('/saludo1/{name}', [UserController::class, 'segundaAccion']);
+Route::get('/saludo1/{name}/{nick}', [UserController::class, 'primeraAccion']);
 
 Route::fallback(fn() => view('404'));
 
@@ -38,3 +42,5 @@ Route::redirect('/saludoUno', '/saludo1');
 Route::redirect('/saludoDos', '/saludo2');
 Route::get('/otroSaludoUno', fn() => redirect()->route('primerSaludo', []));
 //Route::redirect('/otroSaludoUno', route('primerSaludo'));
+
+Route::resource('/usuarios', UserController::class);
